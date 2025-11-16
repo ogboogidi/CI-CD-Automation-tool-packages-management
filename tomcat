@@ -9,4 +9,29 @@ sudo mv /opt/apache-tomcat-9.0.111 /opt/tomcat
 sudo useradd -r -d /opt/tomcat -s /bin/false tomcat
 sudo chown -R tomcat:tomcat /opt/tomcat
 sudo chmod -R 750 /opt/tomcat
-sudo -u tomcat /opt/tomcat/bin/startup.sh start
+
+sudo tee /etc/systemd/system/tomcat.service > /dev/null <<-"EOF"
+[Unit]
+Description=Tomcat
+After=network.target
+
+[Service]
+Type=forking
+User=tomcat
+Group=tomcat
+LimitNOFILE=65536
+WorkingDirectory=/opt/tomcat
+ExecStart=/opt/tomcat/bin/catalina.sh start
+ExecStop=/opt/tomcat/bin/catalina.sh stop
+Restart=on-failure
+RestartSec=10
+
+[Install]
+WantedBy=multi-user.target
+EOF
+
+sudo systemctl start tomcat
+sudo systemctl enable tomcat
+sudo systemctl status tomcat
+
+echo "tomcat is ready at http://localhost:8080"
