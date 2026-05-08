@@ -1,3 +1,11 @@
+MAVEN INSTALL AND .JAR DEPLOYMENT 
+
+three thing you doing here
+download and install maven in the /opt directory and passing it to the system path 
+go to the home of the user and create a project directory for your project src cloned from github
+run build commands from the project directory
+
+
 #!/bin/bash
 sudo dnf install update -y
 sudo dnf install wget unzip git java-17-amazon-corretto-devel -y
