@@ -9,6 +9,7 @@ sudo rm -f /opt/nexus/nexus-3.86.0-08-linux-x86_64.tar.gz
 sudo mv -f /opt/nexus/sonatype-work/* /opt/sonatype-work
 sudo mv -f /opt/nexus/nexus-3.86.0-08/* /opt/nexus
 sudo rm -rf /opt/nexus/nexus-3.86.0-08
+sudo rm -rf /opt/nexus/sonatype-work
 
 sudo useradd -r -d /opt/nexus -s /bin/false nexus
 sudo chown -R nexus:nexus /opt/nexus /opt/sonatype-work
